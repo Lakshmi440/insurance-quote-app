@@ -1,20 +1,33 @@
-<mat-toolbar class="top-nav">
+<nav class="navbar navbar-expand-lg bg-white border-bottom">
 
-  <div class="brand">
-    <mat-icon>shield</mat-icon>
-    <span>Insurance Portal</span>
+  <div class="container-fluid">
+
+    <a class="navbar-brand fw-semibold" href="#">
+      🛡️ Insurance Portal
+    </a>
+
+    <div class="navbar-nav ms-5">
+
+      <a class="nav-link" href="#">
+        Dashboard
+      </a>
+
+      <a class="nav-link active" href="/quotes">
+        Quotes
+      </a>
+
+      <a class="nav-link" href="#">
+        Customers
+      </a>
+
+      <a class="nav-link" href="#">
+        Reports
+      </a>
+
+    </div>
+
+    
+
   </div>
 
-  <nav class="nav-links">
-    <button mat-button>Dashboard</button>
-    <button mat-button>Quotes</button>
-    <button mat-button>Customers</button>
-    <button mat-button>Reports</button>
-  </nav>
-
-  <div class="user-section">
-    <mat-icon>account_circle</mat-icon>
-    <span>User</span>
-  </div>
-
-</mat-toolbar>
+</nav>
