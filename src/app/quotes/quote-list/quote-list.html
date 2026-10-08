@@ -1,0 +1,92 @@
+<div class="Quote-page">
+
+  <div class="page-header">
+
+    <div>
+      <h1>Quotes</h1>
+      <p>Manage your insurance quotes here.</p>
+    </div>
+
+    <button
+      type="button"
+      class="btn btn-primary"
+      (click)="openAddQuote()">
+
+      + Add Quote
+
+    </button>
+
+  </div>
+
+
+  @if (showProductSelection) {
+
+    <div class="product-selection">
+
+      <h2>Create New Quote</h2>
+
+      <p>Select a product to get started.</p>
+
+      <div class="mb-3">
+
+        <label for="product" class="form-label">
+          Select Product
+        </label>
+
+        <select
+          id="product"
+          class="form-select"
+          [(ngModel)]="selectedProduct">
+
+          <option value="" disabled>
+            Select Product
+          </option>
+
+          <option value="CP">
+            CP - Commercial Property
+          </option>
+
+          <option value="Commercial Auto">
+            Commercial Auto
+          </option>
+
+          <option value="BOP">
+            BOP - Business Owners Policy
+          </option>
+
+        </select>
+        <button
+  type="button"
+  class="btn btn-primary"
+  [disabled]="!selectedProduct"
+  (click)="continueQuote()">
+  Continue
+</button>
+
+      </div>
+
+    </div>
+
+  }
+
+
+  <div class="summary-cards">
+
+    <div class="summary-card">
+      <span>Total Quotes</span>
+      <strong>4</strong>
+    </div>
+
+    <div class="summary-card">
+      <span>In Progress</span>
+      <strong>2</strong>
+    </div>
+
+    <div class="summary-card">
+      <span>Completed</span>
+      <strong>2</strong>
+    </div>
+
+  </div>
+
+</div>

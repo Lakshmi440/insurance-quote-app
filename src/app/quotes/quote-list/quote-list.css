@@ -1,0 +1,66 @@
+.Quote-page {
+  padding: 24px;
+}
+
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.page-header h1 {
+  margin: 0;
+  font-size: 28px;
+}
+
+.page-header p {
+  margin: 6px 0 0;
+  color: #666;
+}
+
+.Add-Quote-button {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.summary-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.summary-card {
+  padding: 20px;
+  border-radius: 10px;
+  background: white;
+  border: 1px solid #e5e7eb;
+}
+
+.summary-card span {
+  display: block;
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.summary-card strong {
+  font-size: 28px;
+}
+.product-selection {
+  margin-bottom: 24px;
+  padding: 24px;
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+}
+
+.product-selection h2 {
+  margin: 0 0 8px;
+  font-size: 22px;
+}
+
+.product-selection p {
+  margin-bottom: 20px;
+  color: #666;
+}
