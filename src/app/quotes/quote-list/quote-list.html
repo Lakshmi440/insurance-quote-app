@@ -19,74 +19,204 @@
   </div>
 
 
-  @if (showProductSelection) {
+ @if (showProductSelection) {
 
-    <div class="product-selection">
+  <div class="modal d-block" tabindex="-1">
 
-      <h2>Create New Quote</h2>
+    <div class="modal-dialog modal-dialog-centered">
 
-      <p>Select a product to get started.</p>
+      <div class="modal-content">
 
-      <div class="mb-3">
+        <!-- Modal Header -->
+        <div class="modal-header">
 
-        <label for="product" class="form-label">
-          Select Product
-        </label>
+          <h5 class="modal-title">
+            Create New Quote
+          </h5>
 
-        <select
-          id="product"
-          class="form-select"
-          [(ngModel)]="selectedProduct">
+          <button
+            type="button"
+            class="btn-close"
+            (click)="showProductSelection = false">
+          </button>
 
-          <option value="" disabled>
+        </div>
+
+
+        <!-- Modal Body -->
+        <div class="modal-body">
+
+          <p class="text-secondary">
+            Select a product to get started.
+          </p>
+
+          <label
+            for="product"
+            class="form-label">
+
             Select Product
-          </option>
 
-          <option value="CP">
-            CP - Commercial Property
-          </option>
+          </label>
 
-          <option value="Commercial Auto">
-            Commercial Auto
-          </option>
+          <select
+            id="product"
+            class="form-select"
+            [(ngModel)]="selectedProduct">
 
-          <option value="BOP">
-            BOP - Business Owners Policy
-          </option>
+            <option
+              value=""
+              disabled>
 
-        </select>
-        <button
-  type="button"
-  class="btn btn-primary"
-  [disabled]="!selectedProduct"
-  (click)="continueQuote()">
-  Continue
-</button>
+              Select Product
+
+            </option>
+
+            <option value="CP">
+              CP - Commercial Property
+            </option>
+
+            <option value="Commercial Auto">
+              Commercial Auto
+            </option>
+
+            <option value="BOP">
+              BOP - Business Owners Policy
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <!-- Modal Footer -->
+        <div class="modal-footer">
+
+          <button
+            type="button"
+            class="btn btn-secondary"
+            (click)="showProductSelection = false">
+
+            Cancel
+
+          </button>
+
+          <button
+            type="button"
+            class="btn btn-primary"
+            [disabled]="!selectedProduct"
+            (click)="continueQuote()">
+
+            Proceed
+
+          </button>
+
+        </div>
 
       </div>
 
     </div>
 
-  }
+  </div>
+
+
+  <!-- Modal Background -->
+  <div class="modal-backdrop fade show"></div>
+}
 
 
   <div class="summary-cards">
 
     <div class="summary-card">
       <span>Total Quotes</span>
-      <strong>4</strong>
+      <strong>{{ totalQuotes }}</strong>
     </div>
 
     <div class="summary-card">
       <span>In Progress</span>
-      <strong>2</strong>
+      <strong>{{ inProgressQuotes }}</strong>
     </div>
 
     <div class="summary-card">
       <span>Completed</span>
-      <strong>2</strong>
+      <strong>{{ completedQuotes }}</strong>
     </div>
 
   </div>
 
 </div>
+@if (quotes.length > 0) {
+
+  <div class="card mt-4">
+
+    <div class="card-body">
+
+      <h5 class="card-title mb-3">
+        Quote List
+      </h5>
+
+      <div class="table-responsive">
+
+        <table class="table table-hover align-middle">
+
+          <thead>
+            <tr>
+              <th>Quote ID</th>
+              <th>Business Name</th>
+              <th>Product</th>
+              <th>Business Type</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+
+          <tbody>
+
+            @for (quote of quotes; track quote.id) {
+
+              <tr>
+
+                <td>
+                  {{ quote.id }}
+                </td>
+
+                <td>
+                  {{ quote.businessInformation.businessName }}
+                </td>
+
+                <td>
+                  {{ quote.product }}
+                </td>
+
+                <td>
+                  {{ quote.businessInformation.businessType }}
+                </td>
+
+                <td>
+                  <span class="badge bg-success">
+                    {{ quote.status }}
+                  </span>
+                </td>
+
+              </tr>
+
+            }
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+    </div>
+
+  </div>
+
+}
+@else {
+
+  <div class="text-center text-secondary mt-4">
+
+    No completed quotes available.
+
+  </div>
+
+}

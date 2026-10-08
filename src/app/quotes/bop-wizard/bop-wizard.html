@@ -1,0 +1,732 @@
+<div class="bop-wizard-page">
+
+  <!-- Page Header -->
+  <div class="wizard-header">
+
+    <div>
+      <h1>BOP Quote</h1>
+
+      <p>
+        Complete the steps below to create the quote.
+      </p>
+    </div>
+
+  </div>
+
+
+  <!-- Wizard Steps -->
+  <div class="wizard-steps">
+
+    <div
+      class="wizard-step"
+      [class.active]="currentStep === 1">
+
+      <span class="step-number">
+        1
+      </span>
+
+      <span>
+        Business Information
+      </span>
+
+    </div>
+
+
+    <div class="step-line"></div>
+
+
+    <div
+      class="wizard-step"
+      [class.active]="currentStep === 2">
+
+      <span class="step-number">
+        2
+      </span>
+
+      <span>
+        Location
+      </span>
+
+    </div>
+
+
+    <div class="step-line"></div>
+
+
+    <div
+      class="wizard-step"
+      [class.active]="currentStep === 3">
+
+      <span class="step-number">
+        3
+      </span>
+
+      <span>
+        Coverage
+      </span>
+
+    </div>
+
+
+    <div class="step-line"></div>
+
+
+    <div
+      class="wizard-step"
+      [class.active]="currentStep === 4">
+
+      <span class="step-number">
+        4
+      </span>
+
+      <span>
+        Review
+      </span>
+
+    </div>
+
+  </div>
+
+
+  <!-- ====================================================== -->
+  <!-- STEP 1 : BUSINESS INFORMATION -->
+  <!-- ====================================================== -->
+
+  @if (currentStep === 1) {
+
+    <div class="wizard-content">
+
+      <h2>
+        Business Information
+      </h2>
+
+      <p class="text-secondary">
+        Enter the basic information about the business.
+      </p>
+
+
+      <form [formGroup]="businessForm">
+
+        <div class="row g-3">
+
+
+          <!-- Business Name -->
+          <div class="col-md-6">
+
+            <label
+              for="businessName"
+              class="form-label">
+
+              Business Name
+
+            </label>
+
+
+            <input
+              type="text"
+              id="businessName"
+              class="form-control"
+              formControlName="businessName"
+              placeholder="Enter business name">
+
+
+            @if (
+              businessForm.get('businessName')?.touched &&
+              businessForm.get('businessName')?.invalid
+            ) {
+
+              <div class="text-danger mt-1">
+
+                Business Name is required.
+
+              </div>
+
+            }
+
+          </div>
+
+
+          <!-- Business Type -->
+          <div class="col-md-6">
+
+            <label
+              for="businessType"
+              class="form-label">
+
+              Business Type
+
+            </label>
+
+
+            <select
+              id="businessType"
+              class="form-select"
+              formControlName="businessType">
+
+              <option value="">
+                Select business type
+              </option>
+
+              <option value="Retail">
+                Retail
+              </option>
+
+              <option value="Restaurant">
+                Restaurant
+              </option>
+
+              <option value="Professional Services">
+                Professional Services
+              </option>
+
+              <option value="Contractor">
+                Contractor
+              </option>
+
+            </select>
+
+
+            @if (
+              businessForm.get('businessType')?.touched &&
+              businessForm.get('businessType')?.invalid
+            ) {
+
+              <div class="text-danger mt-1">
+
+                Business Type is required.
+
+              </div>
+
+            }
+
+          </div>
+
+
+          <!-- Business Description -->
+          <div class="col-12">
+
+            <label
+              for="description"
+              class="form-label">
+
+              Business Description
+
+            </label>
+
+
+            <textarea
+              id="description"
+              class="form-control"
+              rows="4"
+              formControlName="description"
+              placeholder="Describe the business">
+            </textarea>
+
+
+            @if (
+              businessForm.get('description')?.touched &&
+              businessForm.get('description')?.invalid
+            ) {
+
+              <div class="text-danger mt-1">
+
+                Business Description is required.
+
+              </div>
+
+            }
+
+          </div>
+
+        </div>
+
+
+        <!-- Step 1 Actions -->
+        <div class="wizard-actions">
+             <button
+    type="button"
+    class="btn btn-outline-primary me-2"
+    (click)="saveProgress()">
+
+    Save Progress
+
+  </button>
+
+          <button
+            type="button"
+            class="btn btn-primary"
+            (click)="nextStep()">
+
+            Next
+
+          </button>
+
+        </div>
+
+      </form>
+
+    </div>
+
+  }
+
+
+  <!-- ====================================================== -->
+  <!-- STEP 2 : LOCATION -->
+  <!-- ====================================================== -->
+
+  @if (currentStep === 2) {
+
+    <div class="wizard-content">
+
+      <h2>
+        Location
+      </h2>
+
+      <p class="text-secondary">
+        Enter the primary business location.
+      </p>
+
+
+      <form [formGroup]="locationForm">
+
+        <div class="row g-3">
+
+
+          <!-- Address -->
+          <div class="col-12">
+
+            <label
+              for="address"
+              class="form-label">
+
+              Address
+
+            </label>
+
+
+            <input
+              type="text"
+              id="address"
+              class="form-control"
+              formControlName="address"
+              placeholder="Enter business address">
+
+
+            @if (
+              locationForm.get('address')?.touched &&
+              locationForm.get('address')?.invalid
+            ) {
+
+              <div class="text-danger mt-1">
+
+                Address is required.
+
+              </div>
+
+            }
+
+          </div>
+
+
+          <!-- City -->
+          <div class="col-md-6">
+
+            <label
+              for="city"
+              class="form-label">
+
+              City
+
+            </label>
+
+
+            <input
+              type="text"
+              id="city"
+              class="form-control"
+              formControlName="city"
+              placeholder="Enter city">
+
+
+            @if (
+              locationForm.get('city')?.touched &&
+              locationForm.get('city')?.invalid
+            ) {
+
+              <div class="text-danger mt-1">
+
+                City is required.
+
+              </div>
+
+            }
+
+          </div>
+
+
+          <!-- State -->
+          <div class="col-md-3">
+
+            <label
+              for="state"
+              class="form-label">
+
+              State
+
+            </label>
+
+
+            <input
+              type="text"
+              id="state"
+              class="form-control"
+              formControlName="state"
+              placeholder="Enter state">
+
+
+            @if (
+              locationForm.get('state')?.touched &&
+              locationForm.get('state')?.invalid
+            ) {
+
+              <div class="text-danger mt-1">
+
+                State is required.
+
+              </div>
+
+            }
+
+          </div>
+
+
+          <!-- ZIP Code -->
+          <div class="col-md-3">
+
+            <label
+              for="zipCode"
+              class="form-label">
+
+              ZIP Code
+
+            </label>
+
+
+            <input
+              type="text"
+              id="zipCode"
+              class="form-control"
+              formControlName="zipCode"
+              placeholder="Enter ZIP code">
+
+
+            @if (
+              locationForm.get('zipCode')?.touched &&
+              locationForm.get('zipCode')?.invalid
+            ) {
+
+              <div class="text-danger mt-1">
+
+                ZIP Code is required.
+
+              </div>
+
+            }
+
+          </div>
+
+        </div>
+
+
+        <!-- Step 2 Actions -->
+        <div class="wizard-actions">
+
+          <button
+            type="button"
+            class="btn btn-outline-secondary"
+            (click)="currentStep = 1">
+
+            Back
+
+          </button>
+          <button
+    type="button"
+    class="btn btn-outline-primary"
+    (click)="saveProgress()">
+
+    Save Progress
+
+  </button>
+
+
+          <button
+            type="button"
+            class="btn btn-primary"
+            (click)="nextStep()">
+
+            Next
+
+          </button>
+
+        </div>
+
+      </form>
+
+    </div>
+
+  }
+
+
+  <!-- ====================================================== -->
+  <!-- STEP 3 : COVERAGE -->
+  <!-- ====================================================== -->
+
+  @if (currentStep === 3) {
+
+    <div class="wizard-content">
+
+      <h2>
+        Coverage
+      </h2>
+
+      <p class="text-secondary">
+        Select the coverage required for the BOP quote.
+      </p>
+
+
+      <div class="row g-3">
+
+
+        <!-- Property Coverage -->
+        <div class="col-md-6">
+
+          <div class="border rounded p-3">
+
+            <div class="form-check">
+
+              <input
+                class="form-check-input"
+                type="checkbox"
+                id="propertyCoverage">
+
+              <label
+                class="form-check-label"
+                for="propertyCoverage">
+
+                Commercial Property
+
+              </label>
+
+            </div>
+
+            <small class="text-secondary">
+
+              Coverage for business property and assets.
+
+            </small>
+
+          </div>
+
+        </div>
+
+
+        <!-- Liability Coverage -->
+        <div class="col-md-6">
+
+          <div class="border rounded p-3">
+
+            <div class="form-check">
+
+              <input
+                class="form-check-input"
+                type="checkbox"
+                id="liabilityCoverage">
+
+              <label
+                class="form-check-label"
+                for="liabilityCoverage">
+
+                General Liability
+
+              </label>
+
+            </div>
+
+            <small class="text-secondary">
+
+              Coverage for third-party bodily injury
+              and property damage.
+
+            </small>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- Step 3 Actions -->
+      <div class="wizard-actions">
+
+        <button
+          type="button"
+          class="btn btn-outline-secondary"
+          (click)="currentStep = 2">
+
+          Back
+
+        </button>
+        <button
+    type="button"
+    class="btn btn-outline-primary"
+    (click)="saveProgress()">
+
+    save Progress
+
+  </button>
+
+
+        <button
+          type="button"
+          class="btn btn-primary"
+          (click)="currentStep = 4">
+
+          Next
+
+        </button>
+
+      </div>
+
+    </div>
+
+  }
+
+
+  <!-- ====================================================== -->
+  <!-- STEP 4 : REVIEW -->
+  <!-- ====================================================== -->
+
+  @if (currentStep === 4) {
+
+    <div class="wizard-content">
+
+      <h2>
+        Review Quote
+      </h2>
+
+      <p class="text-secondary">
+        Review the information before saving the quote.
+      </p>
+
+
+      <!-- Business Information -->
+      <div class="border rounded p-3 mb-3">
+
+        <h5>
+          Business Information
+        </h5>
+
+        <p class="mb-1">
+
+          <strong>Business Name:</strong>
+
+          {{ businessForm.get('businessName')?.value }}
+
+        </p>
+
+
+        <p class="mb-1">
+
+          <strong>Business Type:</strong>
+
+          {{ businessForm.get('businessType')?.value }}
+
+        </p>
+
+
+        <p class="mb-0">
+
+          <strong>Description:</strong>
+
+          {{ businessForm.get('description')?.value }}
+
+        </p>
+
+      </div>
+
+
+      <!-- Location Information -->
+      <div class="border rounded p-3">
+
+        <h5>
+          Location
+        </h5>
+
+        <p class="mb-1">
+
+          <strong>Address:</strong>
+
+          {{ locationForm.get('address')?.value }}
+
+        </p>
+
+
+        <p class="mb-1">
+
+          <strong>City:</strong>
+
+          {{ locationForm.get('city')?.value }}
+
+        </p>
+
+
+        <p class="mb-1">
+
+          <strong>State:</strong>
+
+          {{ locationForm.get('state')?.value }}
+
+        </p>
+
+
+        <p class="mb-0">
+
+          <strong>ZIP Code:</strong>
+
+          {{ locationForm.get('zipCode')?.value }}
+
+        </p>
+
+      </div>
+
+
+      <!-- Step 4 Actions -->
+      <div class="wizard-actions">
+
+        <button
+          type="button"
+          class="btn btn-outline-secondary"
+          (click)="currentStep = 3">
+
+          Back
+
+        </button>
+
+
+       <button
+  type="button"
+  class="btn btn-primary"
+  (click)="saveQuote()">
+
+  Save Quote
+
+</button>
+
+      </div>
+
+    </div>
+
+  }
+
+</div>
